@@ -190,7 +190,6 @@ class PayerController extends Controller
 
     public function destroy(Payer $payer)
     {
-        // Effectue des opérations spécifiques avant la suppression
 
         $payer->delete();
 

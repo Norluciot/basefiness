@@ -10,7 +10,7 @@
 </x-slot>
 <div class="container my-4"> <!-- Ajout de la classe de marge my-4 -->
     <h2 class="mb-4">Liste des Membres</h2>
-    <a href="{{ route('membres.create') }}" class="btn btn-primary">Ajouter </a>
+    <a href="{{ route('membres.create') }}" class="btn btn-dark">Ajouter un membre </a>
     <br><br>
 
     @if(session('success'))

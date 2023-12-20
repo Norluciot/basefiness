@@ -152,7 +152,16 @@
 
                     </ul>
                 </li>
-                <li class="label">Payement </li>
+                <li class="label ">Page produit</li>
+                        <li><a class="sidebar-sub-toggle fw-bold text-dark bg-white"><i class="ti-files"></i> Produit <span
+                                    class="sidebar-collapse-icon ti-angle-down"></span></a>
+                            <ul>
+                                <li><a href="{{url('/produits')}}">Produit</a></li>
+
+                            </ul>
+                        </li>
+
+                <li class="label">Page d'opérations</li>
 
 
                 <li><a class="sidebar-sub-toggle fw-bold text-dark bg-white"><i class="">
@@ -162,36 +171,17 @@
 
 
 
-                </i> Payement <span
+                </i> Opérations <span
                     class="badge  text-white bg-dark">2</span> <span
                     class="sidebar-collapse-icon ti-angle-down"></span></a>
             <ul>
                 <li><a href="{{url('/payer')}}">Paiement </a></li>
+                <li><a href="{{url('/achats')}}">Achat</a></li>
+                <li><a href="{{url('/rapport')}}">Rapport Journalier</a></li>
 
                     </ul>
                 </li>
-                <li class="label">Achat</li>
 
-
-                <li><a class="sidebar-sub-toggle fw-bold text-dark bg-white"><i class="ti-home"></i> Achat <span
-                    class="badge bg-dark text-danger">5</span> <span
-                    class="sidebar-collapse-icon ti-angle-down"></span></a>
-            <ul>
-                <li><a href="{{url('/rapport')}}">Rapport</a></li>
-
-            </ul>
-            </li>
-                        <li class="label ">Page produit</li>
-                        <li><a class="sidebar-sub-toggle fw-bold text-dark bg-white"><i class="ti-files"></i> Produit <span
-                                    class="sidebar-collapse-icon ti-angle-down"></span></a>
-                            <ul>
-                                <li><a href="{{url('/produits')}}">Produit</a></li>
-                                <li><a href="{{url('/achats')}}">Achat</a></li>
-
-                            </ul>
-                        </li>
-
-                    </ul>
                 </div>
             </div>
     </div>

@@ -42,7 +42,7 @@
 
             <!-- Ajoutez d'autres champs pour les autres attributs du membre -->
 
-            <button type="submit" class="btn btn-primary" onclick="return confirm('Êtes-vous sûr de vouloir modifier ce membre ?')">Enregistrer les modifications</button>
+            <button type="submit" class="btn btn-dark" onclick="return confirm('Êtes-vous sûr de vouloir modifier ce membre ?')">Enregistrer les modifications</button>
         </form>
     </div>
 @endsection

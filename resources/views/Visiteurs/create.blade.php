@@ -28,7 +28,7 @@
 
             <!-- Ajoutez d'autres champs pour les autres attributs du visiteur -->
 
-            <button type="submit" class="btn btn-primary" onclick="return confirm('Êtes-vous sûr de vouloir ajouter ce visiteur ?')">Ajouter le visiteur</button>
+            <button type="submit" class="btn btn-dark" onclick="return confirm('Êtes-vous sûr de vouloir ajouter ce visiteur ?')">Ajouter le visiteur</button>
         </form>
     </div>
 @endsection

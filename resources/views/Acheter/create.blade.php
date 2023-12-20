@@ -22,6 +22,7 @@
         <div class="form-group">
             <label for="type_client">Type de client :</label>
             <select name="type_client" class="form-control" required>
+                <option value="0">Veuillez sélectionner le type de client</option>
                 <option value="membre">Membre</option>
                 <option value="visiteur">Visiteur</option>
             </select>
@@ -30,6 +31,7 @@
         <div class="form-group">
             <label for="produit_id">Produit :</label>
             <select name="produit_id" class="form-control" required>
+                <option value="0">Veuillez sélectionner le produit</option>
                 @foreach($produits as $produit)
                     <option value="{{ $produit->produit_id }}" data-prix="{{ $produit->prix_unitaire }}">{{ $produit->designation }}</option>
                 @endforeach
@@ -52,7 +54,7 @@
         </div>
 
 
-        <button type="submit" class="btn btn-primary">Effectuer l'achat</button>
+        <button type="submit" class="btn btn-dark">Effectuer l'achat</button>
     </form>
 </div>
 

@@ -38,7 +38,7 @@
 
         <!-- Ajoutez d'autres champs pour les autres attributs du membre -->
 
-        <button type="submit" class="btn btn-primary" onclick="return confirm('Êtes-vous sûr de vouloir ajouter ce membre ?')">Ajouter le membre</button>
+        <button type="submit" class="btn btn-dark" onclick="return confirm('Êtes-vous sûr de vouloir ajouter ce membre ?')">Ajouter le membre</button>
     </form>
 </div>
 @endsection

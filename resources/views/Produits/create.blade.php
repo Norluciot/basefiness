@@ -25,7 +25,7 @@
 
         <!-- Ajoutez d'autres champs pour les autres attributs du produit -->
 
-        <button type="submit" class="btn btn-primary">Ajouter le produit</button>
+        <button type="submit" class="btn btn-dark">Ajouter le produit</button>
     </form>
 </div>
 

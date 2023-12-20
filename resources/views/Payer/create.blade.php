@@ -67,7 +67,7 @@
             </div>
 
             <div class="form-group">
-                <button type="submit" class="btn btn-primary" onclick="return confirm('Êtes-vous sûr de vouloir enregistrer ce paiement ?')">Enregistrer</button>
+                <button type="submit" class="btn btn-dark" onclick="return confirm('Êtes-vous sûr de vouloir enregistrer ce paiement ?')">Enregistrer</button>
             </div>
         </form>
     </div>

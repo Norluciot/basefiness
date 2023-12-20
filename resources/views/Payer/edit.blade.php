@@ -61,7 +61,7 @@
             </div>
         @endif
 
-        <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
+        <button type="submit" class="btn btn-dark">Enregistrer les modifications</button>
     </form>
 </div>
 
