@@ -44,6 +44,11 @@ class Payer extends Model
     return $value ? Carbon::parse($value) : null;
     }
 
+    public function getMembreStatusAttribute()
+    {
+        return $this->membre->statut; // Assurez-vous que "membre" est le nom de votre relation dans le modèle Payer
+    }
+
 }
 
 

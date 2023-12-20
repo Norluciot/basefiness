@@ -11,11 +11,17 @@ class Showmembre extends Controller
 
 
     public function prix($id){
-        return view('Membres.show',[
+        $membre = Membre::where('membre_id', $id)->get();
+        $payers = Payer::where('membre_id', $id)->orderby('payer_id', 'desc')->first();
 
-            "membres"=>Membre::where('membre_id', $id)->get(),
+        if ($payers) {
+            $payers = $payers->get();
+        }
 
-            "payers"=>Payer::where('membre_id', $id)->orderby('payer_id','desc')->first()->get(),
+        return view('Membres.show', [
+            "membres" => $membre,
+            "payers" => $payers,
         ]);
     }
+
 }

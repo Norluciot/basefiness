@@ -108,6 +108,7 @@ class PayerController extends Controller
                     'total_paye' => $request->quantite_paye * $tarif->prix_unitaire,
                     'statut' => Carbon::parse($dateDebut)->isFuture() ? 'Actif' : 'Expire',
                 ]);
+
                 return redirect('/payer')->with('success', 'Paiement enregistré avec succès!')->setStatusCode(302);
 
             }

@@ -32,15 +32,15 @@
 
 
 @foreach ($membres as $membre)
-        @if($membre->photo)
-        <img class="member-photo" src="{{ asset('storage/photos/' . $membre->photo) }}" alt="Photo">
-        @else
-        Aucune photo disponible.
-        @endif
+
         <h2>Détails du Membre</h2>
         <div class="member-details">
             <div class="photo-container">
-
+                @if($membre->photo)
+                    <img class="member-photo" src="{{ asset('storage/photos/' . $membre->photo) }}" alt="Photo">
+                @else
+                    Aucune photo disponible.
+                @endif
             </div>
 
             <div>
@@ -57,26 +57,30 @@
             </div>
             <div>
                 <strong>Début d'abonnement :</strong>
-                @foreach ($payers as $payer)
-
-                @if($membre->membre_id == $payer->membre_id)
-                {{ $payer->date_debut }}
+                @if ($payers && count($payers) > 0)
+                    {{ $payers[0]->date_debut }}
                 @else
-                N/A
+                    N/A
                 @endif
-                @endforeach
             </div>
             <div>
                 <strong>Fin d'abonnement :</strong>
-                @foreach ($payers as $payer)
-
-                @if($membre->membre_id == $payer->membre_id)
-                {{ $payer->date_fin }}
+                @if ($payers && count($payers) > 0)
+                    {{ $payers[0]->date_fin }}
                 @else
-                N/A
+                    N/A
                 @endif
-                @endforeach
             </div>
+            <div>
+                @if ($payers !== null && count($payers) > 0)
+                    <strong>Statut:</strong> {{ $payers[0]->membre_status }}
+                @else
+                    <strong>Statut:</strong> N/A
+                @endif
+            </div>
+
+
+
 
             <div class="buttons-container">
                 <a href="{{ route('membres.edit', $membre->membre_id) }}" class="btn btn-primary">Modifier</a>
