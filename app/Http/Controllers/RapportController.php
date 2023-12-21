@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Payer;
 use App\Models\Acheter;
+use App\Http\Controllers\MembreController;
 
 class RapportController extends Controller
 {
@@ -54,9 +55,29 @@ class RapportController extends Controller
         ];
     }
 
+    public function dashboard(MembreController $membreController, TarifController $tarifController)
+    {
+        $totalMembres = $membreController->countMembres();
+        $totalVisiteurs = $membreController->countVisiteurs();
+        $totalTarifs = $tarifController->countTarifs();
+        $recetteJournaliere = $this->calculerRecetteJournaliere();
 
+        // Vérifiez si $recetteJournaliere est un tableau associatif avant de l'utiliser dans la vue
+        if (is_array($recetteJournaliere) && array_key_exists('recette_journaliere', $recetteJournaliere)) {
+            // Passer les données à la vue
+            $data = [
+                'recetteJournaliere' => $recetteJournaliere['recette_journaliere'],
+                'totalMembres' => $totalMembres,
+                'totalVisiteurs' => $totalVisiteurs,
+                'totalTarifs' => $totalTarifs,
+            ];
 
-
-
-
+            // Retourner la vue avec les données
+            return view('dashboard', $data);
+        } else {
+            // Gérer le cas où $recetteJournaliere n'est pas un tableau associatif valide
+            return view('dashboard')->with('error', 'Erreur lors du calcul de la recette journalière.');
+        }
+    }
 }
+

@@ -23,7 +23,7 @@
             <input type="text" name="prix_unitaire" class="form-control" required>
         </div>
 
-        <button type="submit" class="btn btn-primary">Ajouter le tarif</button>
+        <button type="submit" class="btn btn-dark">Ajouter l'activité</button>
     </form>
 </div>
 @endsection

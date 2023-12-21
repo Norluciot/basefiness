@@ -47,7 +47,7 @@ class TarifController extends Controller
             // Ajoutez d'autres champs si nécessaire
         ]);
 
-        return redirect()->route('tarifs.index')->with('success', 'Tarif ajouté avec succès!');
+        return redirect()->route('tarifs.index')->with('success', 'Activité ajouté avec succès!');
     }
 
 
@@ -108,6 +108,12 @@ class TarifController extends Controller
         dd($tarifs); // Vérifiez les données dans les logs
         return response()->json($tarifs);
     }
+
+    public function countTarifs()
+    {
+        return Tarif::count();
+    }
+
 
 
 }

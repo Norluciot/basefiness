@@ -123,10 +123,8 @@ public function update(Request $request, Visiteur $visiteur)
         return redirect()->route('visiteurs.index')->with('success', 'Visiteur supprimé avec succès!');
     }
 
-    private function countVisiteurs()
-    {
-        return Visiteur::count();
-    }
+
+
 
 
 }

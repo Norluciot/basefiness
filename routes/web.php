@@ -46,6 +46,8 @@ require __DIR__.'/auth.php';
 //ROUTES POUR LE MEMBRE CONTROLLER
 Route::resource('membres', MembreController::class);
 Route::get('/membres/search', 'MembreController@search')->name('membres.search');
+Route::get('/dashboard', [MembreController::class, 'dashboard'])->name('dashboard');
+
 
 Route::get('/membre/{id}',  [Showmembre::class, 'prix']);
 //ROUTES POUR LE VISITEUR CONTROLLER
@@ -80,6 +82,7 @@ Route::get('/suivi-seances-visiteurs', [SuiviSeanceVisiteurController::class, 'i
 Route::post('suivi-seances-visiteurs', [SuiviSeanceVisiteurController::class, 'store'])->name('suivi_seances_visiteurs.store');
 
 Route::get('/rapport', [RapportController::class, 'rapportJournalier'])->name('rapport.journalier');
+Route::get('/dashboard', [RapportController::class, 'dashboard'])->name('dashboard');
 
 
 

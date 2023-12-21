@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Membre;
-use App\Models\Payer;
+use App\Models\Visiteur;
 use Illuminate\Http\Request;
+
 
 class MembreController extends Controller
 {
-  
+
     public function index(Request $request)
     {
         $query = $request->input('query');
@@ -120,8 +121,29 @@ class MembreController extends Controller
         return redirect()->route('membres.index')->with('success', 'Membre supprimé avec succès!');
     }
 
-    private function countMembres()
+    // MembreController.php
+    public function countVisiteurs()
+    {
+        return Visiteur::count();
+    }
+
+   // Dans le contrôleur MembreController.php
+    public function dashboard()
+    {
+        $totalMembres = $this->countMembres();
+        $totalVisiteurs = $this->countVisiteurs();
+
+        return view('dashboard', compact('totalMembres', 'totalVisiteurs'));
+    }
+
+
+
+    // Dans le contrôleur MembreController.php
+    public function countMembres()
     {
         return Membre::count();
     }
+
+
+
 }

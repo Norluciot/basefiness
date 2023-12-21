@@ -38,7 +38,13 @@
                                 </div>
                                 <div class="stat-content dib">
                                     <div class="stat-text">Recette du jours</div>
-                                    <div class="stat-digit">1,012</div>
+                                    <div class="stat-digit">
+                                        @if (isset($recetteJournaliere))
+                                        {{ $recetteJournaliere }}
+                                    @else
+                                        Données non disponibles
+                                    @endif
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -50,7 +56,7 @@
                                 </div>
                                 <div class="stat-content dib">
                                     <div class="stat-text">Total Membres</div>
-                                    <div class="stat-digit">961</div>
+                                    <div class="stat-digit">{{ $totalMembres ?? 0 }}</div>
                                 </div>
                             </div>
                         </div>
@@ -62,7 +68,7 @@
                                 </div>
                                 <div class="stat-content dib">
                                     <div class="stat-text">Total Visiteurs</div>
-                                    <div class="stat-digit">770</div>
+                                    <div class="stat-digit">{{ $totalVisiteurs ?? 0}}</div>
                                 </div>
                             </div>
                         </div>
@@ -72,8 +78,8 @@
                             <div class="stat-widget-one">
                                 <div class="stat-icon dib"><i class="ti-link color-danger border-danger"></i></div>
                                 <div class="stat-content dib">
-                                    <div class="stat-text">Referral</div>
-                                    <div class="stat-digit">2,781</div>
+                                    <div class="stat-text">Activité</div>
+                                    <div class="stat-digit">{{ $totalTarifs }}</div>
                                 </div>
                             </div>
                         </div>
