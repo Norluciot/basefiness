@@ -84,8 +84,15 @@ class MembreController extends Controller
     // Afficher un membre spécifique
     public function show(Membre $membre)
     {
-        return view('membres.show', compact('membre'));
+        $lastPaymentDetails = $membre->lastPaymentDetails;
+
+        // Assurez-vous que $lastPaymentDetails est défini, sinon, initialisez-le à un tableau vide
+        $lastPaymentDetails = $lastPaymentDetails ?? [];
+
+        return view('membres.show', compact('membre', 'lastPaymentDetails'));
     }
+
+
 
     // Afficher le formulaire d'édition
     public function edit(Membre $membre)

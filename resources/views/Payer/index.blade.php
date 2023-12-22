@@ -41,24 +41,25 @@
             </thead>
             <tbody>
                 @foreach ($payers as $payer)
-                    <tr>
-                        <td class="bg-white border-0">@if ($payer->membre)
+                <tr>
+                    <td class="bg-white border-0">
+                        @if ($payer->membre)
                             Membre
                         @elseif ($payer->visiteur)
                             Visiteur
                         @else
                             Inconnu
                         @endif
-                        </td>
-                        <td class="bg-white border-0">
-                            @if ($payer->membre)
-                                {{ $payer->membre->nom }}
-                            @elseif ($payer->visiteur)
-                                {{ $payer->visiteur->visiteur_nom }}
-                            @else
-                                Inconnu
-                            @endif
-                        </td>
+                    </td>
+                    <td class="bg-white border-0">
+                        @if ($payer->membre)
+                            {{ $payer->membre->nom }}
+                        @elseif ($payer->visiteur)
+                            {{ $payer->visiteur->visiteur_nom }}
+                        @else
+                            Inconnu
+                        @endif
+                    </td>
                         <td class="bg-white border-0">{{
                         $format = strftime("%d %b %Y %Hm:%m", $payer->created_at->getTimesTamp())
                         }}</td>

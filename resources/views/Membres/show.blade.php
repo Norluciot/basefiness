@@ -1,97 +1,78 @@
 @extends('layouts.app')
 
 @section('content')
+
+    <style>
+        .center-content {
+            text-align: center;
+            margin-top: 20px; /* Facultatif, ajustez selon vos besoins */
+        }
+
+        .member-details {
+            text-align: left;
+            margin: 20px;
+            display: inline-block; /* Pour que le texte soit aligné à gauche dans le bloc */
+        }
+
+        .photo-container {
+            max-width: 300px;
+            margin-bottom: 20px;
+            margin: 0 auto; /* Centre le conteneur de photo horizontalement */
+        }
+
+        .member-photo {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .buttons-container {
+            text-align: center;
+        }
+    </style>
     <div class="container">
-        <style>
-            .container {
-                text-align: center;
-            }
+        <div class="container center-content">
+            <div class="card text-bg-dark">
+                <img width="350" class="rounded-5 text-center" src="{{ asset('storage/photos/' . $membre->photo) }}" alt="Photo">
+                <div class="card-img-overlay justify-center">
+                    <h2 class="card-title text-center">Détails du Membre</h2>
+                    <p class="card-text"><strong>Nom :</strong> {{ $membre->nom }}</li></p>
+                    <p class="card-text"><strong>Prénom :</strong> {{ $membre->prenom }}</li></p>
+                    <p class="card-text"><strong>Sexe :</strong> {{ $membre->sexe }}</p>
+                    <p class="card-text"><strong>Contact :</strong> {{ $membre->contact }}</p>
+                    <p class="card-text"><strong>Début d'abonnement :</strong>
+                        @if ($lastPaymentDetails['date_debut'])
+                            {{ $lastPaymentDetails['date_debut']->format('d/m/Y') }}
+                        @else
+                            N/A
+                        @endif
+                    </p>
+                    <p class="card-text"><strong>Fin d'abonnement :</strong>
+                        @if ($lastPaymentDetails['date_fin'])
+                            {{ $lastPaymentDetails['date_fin']->format('d/m/Y') }}
+                        @else
+                            N/A
+                        @endif
+                    </p>
+                    {{-- <p class="card-text"><strong>Statut:</strong> {{ $lastPaymentDetails['statut'] ?? 'N/A' }}</p> --}}
 
-            .member-details {
-                display: inline-block;
-                text-align: left;
-            }
-
-            .photo-container {
-                max-width: 300px;
-                margin-bottom: 15px;
-                border: 1px solid #ccc;
-                padding: 5px;
-            }
-
-            .member-photo {
-                max-width: 100%;
-                max-height: 100%;
-            }
-
-            .buttons-container {
-                text-align: center;
-            }
-        </style>
-
-
-
-@foreach ($membres as $membre)
-
-        <h2>Détails du Membre</h2>
-        <div class="member-details">
-            <div class="photo-container">
-                @if($membre->photo)
-                    <img class="member-photo" src="{{ asset('storage/photos/' . $membre->photo) }}" alt="Photo">
-                @else
-                    Aucune photo disponible.
-                @endif
-            </div>
-
-            <div>
-                <strong>Nom :</strong> {{ $membre->nom }}
-            </div>
-            <div>
-                <strong>Prénom :</strong> {{ $membre->prenom }}
-            </div>
-            <div>
-                <strong>Sexe :</strong> {{ $membre->sexe }}
-            </div>
-            <div>
-                <strong>Contact :</strong> {{ $membre->contact }}
-            </div>
-            <div>
-                <strong>Début d'abonnement :</strong>
-                @if ($payers && count($payers) > 0)
-                    {{ $payers[0]->date_debut }}
-                @else
-                    N/A
-                @endif
-            </div>
-            <div>
-                <strong>Fin d'abonnement :</strong>
-                @if ($payers && count($payers) > 0)
-                    {{ $payers[0]->date_fin }}
-                @else
-                    N/A
-                @endif
-            </div>
-            <div>
-                @if ($payers !== null && count($payers) > 0)
-                    <strong>Statut:</strong> {{ $payers[0]->membre_status }}
-                @else
-                    <strong>Statut:</strong> N/A
-                @endif
-            </div>
-
-
-
-
-            <div class="buttons-container">
-                <a href="{{ route('membres.edit', $membre->membre_id) }}" class="btn btn-primary">Modifier</a>
-                <form action="{{ route('membres.destroy', $membre->membre_id) }}" method="post" style="display: inline;">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce membre?')">Supprimer</button>
-                </form>
-                <a href="{{ route('membres.index') }}" class="btn btn-secondary">Retour à la liste</a>
+                </div>
             </div>
         </div>
-        @endforeach
+        <br>
+        <br>
+        <br>
+        <br><br>
+
+        <div class="buttons-container">
+            <a href="{{ route('membres.edit', $membre->membre_id) }}" class="btn btn-dark">Modifier</a>
+            <form action="{{ route('membres.destroy', $membre->membre_id) }}" method="post" style="display: inline;">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce membre?')">Supprimer</button>
+            </form>
+            <a href="{{ route('membres.index') }}" class="btn btn-secondary">Retour à la liste</a>
+        </div>
+
     </div>
-    @endsection
+
+@endsection

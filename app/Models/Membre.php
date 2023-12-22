@@ -19,6 +19,27 @@ class Membre extends Model
     {
         return $this->hasMany(Payer::class, 'membre_id');
     }
+    // Dans le modèle Membre.php
+    public function getLastPaymentDetailsAttribute()
+    {
+        $latestPayment = $this->payers()->latest()->first();
+
+        if ($latestPayment) {
+            return [
+                'date_debut' => $latestPayment->date_debut,
+                'date_fin' => $latestPayment->date_fin,
+                'statut' => $latestPayment->statut,
+            ];
+        } else {
+            return [
+                'date_debut' => null,
+                'date_fin' => null,
+                'statut' => null,
+            ];
+        }
+    }
+
+
 
     // Vous pouvez ajouter d'autres relations ou méthodes si nécessaire
 }
