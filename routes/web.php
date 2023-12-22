@@ -51,7 +51,7 @@ Route::get('/dashboard', [MembreController::class, 'dashboard'])->name('dashboar
 
 Route::get('/membre/{id}',  [Showmembre::class, 'prix']);
 //ROUTES POUR LE VISITEUR CONTROLLER
-// Route::resource('visiteurs', VisiteurController::class);
+Route::resource('visiteurs', VisiteurController::class);
 
 //ROUTES POUR LE PRODUIT CONTROLLER
 Route::resource('produits', ProduitController::class);
