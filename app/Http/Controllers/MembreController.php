@@ -109,11 +109,28 @@ class MembreController extends Controller
             'prenom' => 'required',
             'sexe' => 'required',
             'contact' => 'required',
-            // 'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         // Mise à jour du membre
         $membre->update($request->all());
+        if ($request->hasFile('photo')) {
+            $photo = $request->file('photo');
+
+            // Assurez-vous que le fichier est une image
+            if ($photo->isValid()) {
+                $fileName = time() . '_' . $photo->getClientOriginalName();
+
+                // Stockez le fichier dans le répertoire de stockage approprié
+                $photo->storeAs('public/photos', $fileName);
+
+                // Mettez à jour le champ 'photo' dans la base de données
+                $membre->update(['photo' => $fileName]);
+            } else {
+                // En cas d'échec de validation de l'image
+                return redirect()->route('membres.create')->with('error', 'Le fichier photo n\'est pas valide.');
+            }
+        }
 
         // Redirection avec un message
         return redirect()->route('membres.index')->with('success', 'Membre mis à jour avec succès!');

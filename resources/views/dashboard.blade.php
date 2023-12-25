@@ -37,13 +37,13 @@
                                     <i class="ti-money color-success border-success "></i>
                                 </div>
                                 <div class="stat-content dib">
-                                    <div class="stat-text">Recette du jours</div>
+                                    <div class="stat-text">Total Entrée</div>
                                     <div class="stat-digit">
                                         @if (isset($recetteJournaliere))
-                                        {{ $recetteJournaliere }}
-                                    @else
-                                        Données non disponibles
-                                    @endif
+                                            {{ $recetteJournaliere }}
+                                        @else
+                                            Données non disponibles
+                                        @endif
                                     </div>
                                 </div>
                             </div>
