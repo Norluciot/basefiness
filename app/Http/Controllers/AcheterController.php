@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 use App\Models\Acheter;
 use App\Models\Produit;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class AcheterController extends Controller
 {
@@ -17,6 +18,9 @@ class AcheterController extends Controller
         // Vérifie si une date est fournie dans la requête
         if ($request->has('date_achat')) {
             $query->whereDate('date_achat', $request->date_achat);
+        } else {
+            // Si aucune date n'est fournie, filtre par la date du jour
+            $query->whereDate('date_achat', Carbon::now()->toDateString());
         }
 
         $achats = $query->get();

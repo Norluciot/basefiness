@@ -16,22 +16,47 @@ use App\Models\SuiviSeanceVisiteur;
 class PayerController extends Controller
 {
     public $data;
+
     public function index(Request $request)
     {
-        $query = Payer::query();
+        // Récupérer la date actuelle
+        $currentDate = Carbon::now()->toDateString();
 
-        // Filtrer par date de paiement si spécifié dans la requête
-        if ($request->has('date_paiement')) {
-            $query->whereDate('date_paiement', $request->date_paiement);
+        // Récupérer la date de recherche de la requête
+        $searchDate = $request->input('date_paiement');
+
+        // Filtrer les paiements par la date actuelle ou la date de recherche
+        $payersQuery = Payer::query();
+
+        if ($searchDate) {
+            $payersQuery->whereDate('date_paiement', $searchDate);
+        } else {
+            $payersQuery->whereDate('date_paiement', $currentDate);
         }
 
-        $payers = $query->get();
+        $payers = $payersQuery->get();
 
         // Assurez-vous que $visiteurs est défini avant de le passer à la vue
         $visiteurs = Visiteur::all();
 
-        return view('payer.index', compact('payers', 'visiteurs'));
+        // Regrouper les paiements par date
+        $payersGroupedByDate = $payers->groupBy(function ($payer) {
+            $datePaiement = $payer->date_paiement;
+
+            // Check if $datePaiement is already a Carbon instance
+            if (!$datePaiement instanceof Carbon) {
+                // If not, try to create a Carbon instance from the string
+                $datePaiement = Carbon::parse($datePaiement);
+            }
+
+            return $datePaiement->format('d-m-Y');
+        });
+
+        return view('payer.index', compact('payersGroupedByDate', 'visiteurs'));
     }
+
+
+
 
 
     public function create()

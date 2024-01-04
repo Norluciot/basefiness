@@ -43,15 +43,18 @@ class SuiviSeanceVisiteurController extends Controller
                     $suiviSeance = SuiviSeanceVisiteur::find($data['id']);
 
                     if ($suiviSeance) {
-                        // Vérifiez si la case a été cochée avant d'accéder à 'isChecked'
-                        $isChecked = isset($data['isChecked']) ? $data['isChecked'] : false;
+                        // Vérifiez si la case a déjà été cochée
+                        if (!$suiviSeance->a_fait_seance) {
+                            // Vérifiez si la case a été cochée avant d'accéder à 'isChecked'
+                            $isChecked = isset($data['isChecked']) ? $data['isChecked'] : false;
 
-                        $suiviSeance->a_fait_seance = $isChecked;
-                        $suiviSeance->save();
+                            $suiviSeance->a_fait_seance = $isChecked;
+                            $suiviSeance->save();
 
-                        // Vérifiez si seances_payees est égal à 0 et a_fait_seance est true
-                        if ($suiviSeance->seances_payees == 0 && $isChecked) {
-                            $hasZeroSeances = true;
+                            // Vérifiez si seances_payees est égal à 0 et a_fait_seance est true
+                            if ($suiviSeance->seances_payees == 0 && $isChecked) {
+                                $hasZeroSeances = true;
+                            }
                         }
                     }
                 }
@@ -65,16 +68,6 @@ class SuiviSeanceVisiteurController extends Controller
 
         return redirect()->route('suivi_seances_visiteurs.index')->with('success', 'Les séances ont été enregistrées avec succès.');
     }
-
-
-
-
-
-
-
-
-
-
 
 
     public function show(SuiviSeanceVisiteur $suiviSeanceVisiteur)

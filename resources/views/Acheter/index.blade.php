@@ -31,26 +31,26 @@
         <table class="table caption-top text-capitalize">
             <thead>
                 <tr>
-                    <th scope="col " class="bg-secondary text-white border-0 border-bottom-1">Date d'Achat</th>
-                    <th scope="col " class="bg-secondary text-white border-0 border-bottom-1">Type Client</th>
-                    <th scope="col " class="bg-secondary text-white border-0 border-bottom-1">Produit</th>
-                    <th scope="col " class="bg-secondary text-white border-0 border-bottom-1">Prix Unitaire</th>
-                    <th scope="col " class="bg-secondary text-white border-0 border-bottom-1">Quantité Achetée</th>
-                    <th scope="col " class="bg-secondary text-white border-0 border-bottom-1">Total</th>
-                    <th scope="col" class="bg-secondary text-white border-0 border-bottom-1 " >modifier</th>
-                    <th scope="col" class="bg-secondary text-white border-0 border-bottom-1 text-center" >Supprimer</th>
+                    <th scope="col " class="bg-secondary text-white border-0 border-bottom-1 text-center">Type Client</th>
+                    <th scope="col " class="bg-secondary text-white border-0 border-bottom-1 text-center">Produit</th>
+                    <th scope="col " class="bg-secondary text-white border-0 border-bottom-1 text-center">Prix Unitaire</th>
+                    <th scope="col " class="bg-secondary text-white border-0 border-bottom-1 text-center">Quantité Achetée</th>
+                    <th scope="col " class="bg-secondary text-white border-0 border-bottom-1 text-center">Total</th>
+                    {{-- <th scope="col" class="bg-secondary text-white border-0 border-bottom-1 " >modifier</th>
+                    <th scope="col" class="bg-secondary text-white border-0 border-bottom-1 text-center" >Supprimer</th> --}}
                 </tr>
             </thead>
             <tbody>
                 @foreach($achats as $achat)
                     <tr>
-                        <td class="bg-white border-0 text-center">{{ $achat->date_achat }}</td>
                         <td class="bg-white border-0 text-center">{{ $achat->type_client }}</td>
                         <td class="bg-white border-0 text-center">{{ $achat->produit->designation }}</td>
                         <td class="bg-white border-0 text-center">{{ $achat->produit->prix_unitaire }}</td>
                         <td class="bg-white border-0 text-center">{{ $achat->quantite_achete }}</td>
                         <td class="bg-white border-0 text-center">{{ $achat->quantite_achete * $achat->produit->prix_unitaire }}</td>
-                        <td class="bg-white border-0 text-center">
+
+
+                        {{-- <td class="bg-white border-0 text-center">
                             <a href="{{ route('achats.edit', $achat->acheter_id) }}" class="nav-link">
                                 <svg width="24" class="text-warning" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" data-slot="icon" class="w-6 h-6">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
@@ -68,7 +68,7 @@
                                       </svg>
                                 </button>
                             </form>
-                        </td>
+                        </td> --}}
                     </tr>
                 @endforeach
             </tbody>
