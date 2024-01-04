@@ -21,8 +21,10 @@
         }
 
         .member-photo {
-            max-width: 100%;
-            max-height: 100%;
+        width: 350px; /* Ajustez cette valeur en fonction de la taille souhaitée */
+        height: auto; /* Maintient le ratio d'aspect */
+        max-width: 100%; /* Empêche le dépassement de la largeur du conteneur */
+        max-height: 100%; /* Empêche le dépassement de la hauteur du conteneur */
         }
 
         .buttons-container {
@@ -32,9 +34,10 @@
     <div class="container">
         <div class="container center-content">
             <div class="card text-bg-dark">
-                <img width="350" class="rounded-5 text-center" src="{{ asset('storage/photos/' . $membre->photo) }}" alt="Photo">
+                <img class="rounded-5 text-center member-photo" src="{{ asset('storage/photos/' . $membre->photo) }}" alt="Photo">
                 <div class="card-img-overlay justify-center">
                     <h2 class="card-title text-center">Détails du Membre</h2>
+                    <p class="card-text"><strong>Identifiant :</strong> {{ $membre->membre_id }}</li></p>
                     <p class="card-text"><strong>Nom :</strong> {{ $membre->nom }}</li></p>
                     <p class="card-text"><strong>Prénom :</strong> {{ $membre->prenom }}</li></p>
                     <p class="card-text"><strong>Sexe :</strong> {{ $membre->sexe }}</p>

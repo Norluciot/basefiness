@@ -37,32 +37,38 @@ class SuiviSeanceVisiteurController extends Controller
 
         DB::transaction(function () use ($request) {
             foreach ($request->seances_payees as $visiteurId => $seances) {
-                $hasZeroSeances = false;
+                $counter = 0; // Initialiser le compteur à zéro
+                $seancesToDelete = []; // Tableau pour stocker les ID des séances à supprimer
 
                 foreach ($seances as $suiviId => $data) {
                     $suiviSeance = SuiviSeanceVisiteur::find($data['id']);
 
                     if ($suiviSeance) {
-                        // Vérifiez si la case a déjà été cochée
-                        if (!$suiviSeance->a_fait_seance) {
-                            // Vérifiez si la case a été cochée avant d'accéder à 'isChecked'
-                            $isChecked = isset($data['isChecked']) ? $data['isChecked'] : false;
+                        $isChecked = isset($data['isChecked']) ? $data['isChecked'] : false;
 
-                            $suiviSeance->a_fait_seance = $isChecked;
-                            $suiviSeance->save();
+                        if ($isChecked) {
+                            $counter++; // Incrémenter le compteur si la case est cochée
 
-                            // Vérifiez si seances_payees est égal à 0 et a_fait_seance est true
-                            if ($suiviSeance->seances_payees == 0 && $isChecked) {
-                                $hasZeroSeances = true;
+                            if ($counter == 10) {
+                                // Ajouter les ID des neuf séances précédentes à supprimer
+                                $seancesToDelete = array_slice(array_keys($seances), 0, 10);
+                            } else {
+                                // Mettre à jour la séance
+                                $suiviSeance->update([
+                                    'a_fait_seance' => true,
+                                    'seance_gratuite_utilisee' => false, // Assurez-vous que la séance gratuite n'est pas encore utilisée
+                                ]);
                             }
                         }
                     }
                 }
 
-                // Si $hasZeroSeances est vrai, supprimez toutes les séances associées à ce visiteur
-                if ($hasZeroSeances) {
-                    SuiviSeanceVisiteur::where('visiteur_id', $visiteurId)->delete();
-                }
+                // Supprimer les neuf séances précédentes si la dixième case est cochée
+                if ($counter == 10) {
+                    SuiviSeanceVisiteur::where('visiteur_id', $visiteurId)
+                        ->whereIn('id', $seancesToDelete)
+                        ->delete();
+            }
             }
         });
 

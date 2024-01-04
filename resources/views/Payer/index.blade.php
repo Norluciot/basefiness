@@ -36,7 +36,7 @@
             <thead>
                 <tr>
                     <th scope="col " class="bg-secondary text-white border-0 border-bottom-1 text-left">Type Client</th>
-                    <th scope="col " class="bg-secondary text-white border-0 border-bottom- text-center">Nom</th>
+                    <th scope="col " class="bg-secondary text-white border-0 border-bottom- text-center">Identifiant</th>
                     {{-- <th scope="col " class="bg-secondary text-white border-0 border-bottom-1 text-center">Date de Paiement</th> --}}
                     <th scope="col " class="bg-secondary text-white border-0 border-bottom-1 text-center">Type d'activité</th>
                     <th scope="col " class="bg-secondary text-white border-0 border-bottom-1 text-center">Prix Unitaire</th>
@@ -51,19 +51,13 @@
                     @foreach ($payersByDate as $payer)
                     <tr>
                         <td class="bg-white border-0">
-                            @if ($payer->membre)
-                                Membre
-                            @elseif ($payer->visiteur)
-                                Visiteur
-                            @else
-                                Inconnu
-                            @endif
+                           {{$payer->type_client}}
                         </td>
                         <td class="bg-white border-0 text-center">
                             @if ($payer->membre)
-                                {{ $payer->membre->nom }}
+                                {{ $payer->membre_id }}
                             @elseif ($payer->visiteur)
-                                {{ $payer->visiteur->visiteur_nom }}
+                                {{ $payer->visiteur_id }}
                             @else
                                 Inconnu
                             @endif

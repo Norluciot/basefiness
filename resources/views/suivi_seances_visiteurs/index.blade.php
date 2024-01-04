@@ -4,10 +4,19 @@
 <div class="container">
     <h1>Suivi des Séances des Visiteurs</h1>
 
-    {{-- Formulaire de recherche --}}
     <form action="{{ route('suivi_seances_visiteurs.index') }}" method="GET">
-        <!-- ... (votre code de formulaire de recherche) -->
+        <div class="mb-3">
+            <label for="search_id" class="form-label">Rechercher par ID du visiteur:</label>
+            <input type="text" class="form-control" id="search_id" name="search_id" value="{{ request('search_id') }}">
+        </div>
+        <button type="submit" class="btn btn-secondary">Rechercher</button>
+
+        @if(request()->has('search_id'))
+            <a href="{{ route('suivi_seances_visiteurs.index') }}" class="btn btn-secondary">Actualiser</a>
+        @endif
     </form>
+
+ <br>
 
 
     <form method="post" action="{{ route('suivi_seances_visiteurs.store') }}">

@@ -26,7 +26,7 @@
                 <select name="membre_id" id="membre_id" class="form-control">
                     <option value="0">Veuillez sélectionner un membre</option>
                     @foreach ($membres as $mbr)
-                        <option value="{{ $mbr['membre_id'] }}">{{ $mbr['nom'] }} {{ $mbr['prenom'] }}</option>
+                        <option value="{{ $mbr['membre_id'] }}">{{ $mbr['membre_id'] }} ~ {{ $mbr['nom'] }} {{ $mbr['prenom'] }}</option>
                     @endforeach
                 </select>
             </div>
@@ -36,7 +36,7 @@
                 <select name="visiteur_id" id="visiteur_id" class="form-control">
                     <option value="0">Veuillez sélectionner un visiteur</option>
                     @foreach($visiteurs as $vst)
-                        <option value="{{ $vst['visiteur_id'] }}">{{ $vst['visiteur_nom'] }}</option>
+                        <option value="{{ $vst['visiteur_id'] }}">{{ $vst['visiteur_id'] }} ~ {{ $vst['visiteur_nom'] }}</option>
                     @endforeach
                 </select>
             </div>

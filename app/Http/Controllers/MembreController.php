@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Membre;
 use App\Models\Visiteur;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 
 class MembreController extends Controller
@@ -79,6 +81,7 @@ class MembreController extends Controller
         // Redirection avec un message
         return redirect()->route('membres.index')->with('success', 'Membre ajouté avec succès!');
     }
+
 
 
     // Afficher un membre spécifique
