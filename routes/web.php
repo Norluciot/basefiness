@@ -10,6 +10,7 @@ use App\Http\Controllers\AcheterController;
 use App\Http\Controllers\PayerController;
 use App\Http\Controllers\SuiviSeanceVisiteurController;
 use App\Http\Controllers\RapportController;
+use App\Http\Controllers\Auth\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +40,12 @@ Route::get('/dashboard', function () {
 Route::view('/login', 'auth.login-custom')->name('login');
 
 require __DIR__.'/auth.php';
+
+Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
+
+
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
 
 
 

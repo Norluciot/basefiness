@@ -158,7 +158,6 @@
                     <ul>
                         <li><a href="{{url('/tarifs')}}" >Activité </a></li>
 
-
                     </ul>
                 </li>
                 <li class="label ">Page produit</li>
@@ -183,15 +182,29 @@
                 </i> Opérations <span
                     class="badge  text-white bg-dark">2</span> <span
                     class="sidebar-collapse-icon ti-angle-down"></span></a>
-            <ul>
-                <li><a href="{{url('/payer')}}">Paiement </a></li>
-                <li><a href="{{url('/achats')}}">Achat</a></li>
-                <li><a href="{{url('/rapport')}}">Rapport Journalier</a></li>
+                <ul>
+                    <li><a href="{{url('/payer')}}">Paiement </a></li>
+                    <li><a href="{{url('/achats')}}">Achat</a></li>
+                    <li><a href="{{url('/rapport')}}">Rapport Journalier</a></li>
 
-                    </ul>
+                </ul>
                 </li>
+                <br><br>
+
+                <div class="navbar-nav ms-auto">
+                    @auth
+                        <form action="{{ route('logout') }}" method="post" id="logout-form" class="d-flex">
+                            @csrf
+                            <button type="submit" class="btn btn-outline-danger">Déconnexion</button>
+                        </form>
+                    @endauth
+                </div>
+
+
 
                 </div>
+
+
             </div>
     </div>
     </div>
@@ -199,9 +212,13 @@
 
         <main class="py-4">
             @yield('content')
+            <footer class="fixed-bottom text-right text-light p-2">
+                <p class="m-0"> ©Norluciot 2024</p>
+            </footer>
         </main>
     </div>
 </div>
+
 
 
 

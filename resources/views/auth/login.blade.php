@@ -57,12 +57,12 @@
 
                               <div>
                                 <button type="submit" class="btn btn-outline-danger rounded-3 shadow-sm offset-lg-6">
-                                    {{ __('Login') }}
+                                    {{ __('Connexion ') }}
                                 </button>
 
                                 @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Mot de passe oublié  ?') }}
+                                    <a class="btn btn-link" href="{{ route('register') }}">
+                                        {{ __('Inscription ') }}
                                     </a>
                                 @endif
                               </div>
