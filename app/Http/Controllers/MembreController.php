@@ -46,7 +46,7 @@ class MembreController extends Controller
             'nom' => 'required',
             'prenom' => 'required',
             'sexe' => 'required',
-            'contact' => 'required',
+            // 'contact' => 'required',
             'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
 
         ]);

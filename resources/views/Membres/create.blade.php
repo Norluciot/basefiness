@@ -28,7 +28,7 @@
 
         <div class="form-group">
             <label for="contact">Contact :</label>
-            <input type="text" name="contact" class="form-control" required>
+            <input type="text" name="contact" class="form-control" >
         </div>
 
         <div class="form-group">

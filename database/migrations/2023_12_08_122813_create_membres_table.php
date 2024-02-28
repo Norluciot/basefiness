@@ -13,7 +13,7 @@ class CreateMembresTable extends Migration
             $table->string('nom');
             $table->string('prenom');
             $table->string('sexe');
-            $table->string('contact');
+            $table->string('contact')->nullable();
             $table->string('photo')->nullable();
             $table->timestamps();
         });
